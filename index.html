@@ -2,32 +2,32 @@
 <HTML>
     <HEAD>
         <meta charset="utf-8">
-        <TITLE>2012 TCAP Scores by District</TITLE>
+        <TITLE>2012 TCAP Scores by School</TITLE>
         <script defer src="index.js" charset="utf-8"></script>
         <link rel="stylesheet" href="style.css">
     </HEAD>
     <BODY>
-        <p id="district-dropdown">
-            <label for="select-district">Filter Districts in CO:</label>
-            <select id="district-dropdown" name="select-district">
+        <p class="school-dropdown">
+            <label for="select-school">Filter Schools in CO:</label>
+            <select id="school-dropdown" name="select-school">
                 <option value="a">a</option>
             </select>
         </p>
-        <p id="district-search"></div>
-            <label for="district-search">Search for a District in CO:</label>
-            <input type="search" id="queriedDistrict" required minlength="4" maxlength="12" size="10">
+        <p class="school-search"></div>
+            <label for="school-search">Search for a School in CO:</label>
+            <input type="search" id="queriedSchool" required minlength="4" maxlength="12" size="10">
         </p>
 
-        <table id="tcap-scores">
+        <table class="tcap-scores">
             <thead>
             <tr>
-                <th colspan="2">CO TCAP Data by District (2012)</th>
+                <th colspan="2">CO TCAP Data by School and Grade (2012)</th>
             </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td class="district-name">District Name</td>
-                    <td class="district-avg">District Average</td>
+                    <td class="school-name">School Name</td>
+                    <td class="grade-avg">Grade-level Average</td>
                 </tr>
             </tbody>
         </table>
