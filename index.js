@@ -30,6 +30,17 @@ tcapData()
     })
 
 // add event listener to SchoolDropdown
+schoolDropdown.addEventListener("change", e => {
+    tcapData()
+        .then(data => {
+            const selection = e.target.value
+            for (let i=0; i<data.length; i++) {
+                if ((data[i].school + " - Grade " + data[i].grade_level) === selection) {
+                    
+                }
+            }
+        })
+})
 
 // add event listener to SchoolSearch
 
