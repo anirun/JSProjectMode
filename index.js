@@ -1,12 +1,14 @@
 // define API URL to fetch
 dataUrl = "https://data.colorado.gov/resource/pxq3-yhfb.json"
 
-/* create tcapData function to parse API JSON into a JS Object 
+/* create fetchTcapData function to parse API JSON into a JS Object 
 that can later be manipulated with a chained .then() */
-let tcapData = function(){
+let fetchTcapData = function(){
     return fetch(dataUrl)
         .then(json => json.json())
 }
+
+let tcapData = []
 
 // grab tcap-table and school-dropdown, clear it, and add default option
 let tcapBody = document.querySelector('tbody')
@@ -19,8 +21,8 @@ defaultOption.text = "Choose School and Grade Level"
 schoolDropdown.add(defaultOption)
 schoolDropdown.selectedIndex = 0
 
-// use tcapData to populate schoolDropdown with school name
-tcapData()
+// use fetchTcapData to populate schoolDropdown with school name
+fetchTcapData()
     .then(function(data) {
         let option;
         for (let i=0; i< data.length; i++) {
@@ -34,7 +36,7 @@ tcapData()
 
 // add event listener to SchoolDropdown
 schoolDropdown.addEventListener('change', e => {
-    tcapData()
+    fetchTcapData()
         .then(data => {
             let selection = e.target.value
             for (let i=0; i<data.length; i++) {
@@ -66,10 +68,20 @@ schoolDropdown.addEventListener('change', e => {
         })
 })
 
-// add event listener to SchoolSearch
+// add event listener to schoolSearch
+// const schoolSearch = document.getElementById("queriedSchool")
+// schoolSearch.addEventListener("keyup", e => {
+//     const input = e.target.value
+//     const filteredSchools = tcapData.filter( data => {
+//         data.school.includes(input)
+//     })
+// })
 
+// function & event listener to remove table rows
+function removeSchool(event) {
+    let tr = event.target.parentNode; 
+    tr.parentNode.removeChild(tr);
+}
 
-
-// event listener to remove list or table elements
-
+tcapBody.addEventListener("click", removeSchool)
 
