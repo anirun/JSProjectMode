@@ -1,14 +1,36 @@
+a:link, a:visited {
+    color: lightcyan;
+}
+
+a:hover {
+    color: lightpink;
+}
+
 p {
     text-align: center;
+}
+
+div {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;  
+}
+
+body {
+    font:14px Verdana;
+    background-color: darkgreen;
+    color: white;
 }
 
 table {
     margin-left: auto;
     margin-right: auto;
+    font:14px Verdana;
 }
 
-th, td, tr {
-    font:14px Verdana;
+th {
+    font-weight:bold;
 }
 
 table, th, td 
@@ -19,18 +41,7 @@ table, th, td
     text-align: center;
 }
 
-th {
-    font-weight:bold;
-}
-
 #note, footer {
     font-size: smaller;
     text-align: center;
-}
-
-div {
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 5px;
-    padding-bottom: 5px;  
 }

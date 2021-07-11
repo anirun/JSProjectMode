@@ -8,9 +8,6 @@ let fetchTcapData = function(){
         .then(json => json.json())
 }
 
-// init tcapData empty array
-let tcapData = []
-
 // grab tcap-table and school-dropdown, clear it, and add default option
 let tcapBody = document.querySelector('tbody')
 let schoolDropdown = document.getElementById('school-dropdown')
@@ -33,8 +30,6 @@ fetchTcapData()
             schoolDropdown.add(option)
             }
         }
-        // save fetched data in empty array
-        tcapData = Object.values(data)
     })
 
 // add event listener to SchoolDropdown
@@ -45,7 +40,7 @@ schoolDropdown.addEventListener('change', e => {
             for (let i=0; i<data.length; i++) {
                 // the "if" block is structured to ensure we do not display other grades when a school is selected
                 if ((data[i].school + " - Grade " + data[i].grade_level) === selection) {
-                    // fill in tcap-scores table with schoolName and proficientCount
+                    // fill in tcap-scores table with schoolName, grade and proficientCount
                     let schoolName = data[i].school
                     let gradeLevel = data[i].grade_level
                     let proficientCount = data[i]._2012_proficient_count
@@ -71,7 +66,7 @@ schoolDropdown.addEventListener('change', e => {
         })
 })
 
-// highlight school of interest
+// highlight school only on mouseover
 function highlightSchool(e) {
     if ( e.target.parentNode.className === "unselected" ) {
         e.target.parentNode.className = "selected"
@@ -82,24 +77,17 @@ function highlightSchool(e) {
 function unhighlightSchool(e) {
     if ( e.target.parentNode.className === "selected" ) {
         e.target.parentNode.className = "unselected"
-        e.target.parentNode.style.color = "black"
+        e.target.parentNode.style.color = "white"
     }
 }
 
 tcapBody.addEventListener('mouseover', highlightSchool)
 tcapBody.addEventListener('mouseout', unhighlightSchool)
 
-// function & event listener to remove table rows
+// remove table rows with double click
 function removeSchool(event) {
     let tr = event.target.parentNode; 
     tr.parentNode.removeChild(tr);
 }
 
 tcapBody.addEventListener('dblclick', removeSchool)
-
-// add event listener to schoolSearch
-// const schoolSearch = document.getElementById("queriedSchool")
-// schoolSearch.addEventListener("input", e => {
-//     const input = e.target.value
-//     console.log(input)
-// })
