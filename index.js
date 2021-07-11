@@ -8,6 +8,7 @@ let fetchTcapData = function(){
         .then(json => json.json())
 }
 
+// init tcapData empty array
 let tcapData = []
 
 // grab tcap-table and school-dropdown, clear it, and add default option
@@ -21,7 +22,7 @@ defaultOption.text = "Choose School and Grade Level"
 schoolDropdown.add(defaultOption)
 schoolDropdown.selectedIndex = 0
 
-// use fetchTcapData to populate schoolDropdown with school name
+// use fetchTcapData to populate schoolDropdown with school names
 fetchTcapData()
     .then(function(data) {
         let option;
@@ -32,6 +33,8 @@ fetchTcapData()
             schoolDropdown.add(option)
             }
         }
+        // save fetched data in empty array
+        tcapData = Object.values(data)
     })
 
 // add event listener to SchoolDropdown
@@ -40,8 +43,7 @@ schoolDropdown.addEventListener('change', e => {
         .then(data => {
             let selection = e.target.value
             for (let i=0; i<data.length; i++) {
-                // the "if" block is structured to ensure we do not display 
-                // other grades when a school is selected
+                // the "if" block is structured to ensure we do not display other grades when a school is selected
                 if ((data[i].school + " - Grade " + data[i].grade_level) === selection) {
                     // fill in tcap-scores table with schoolName and proficientCount
                     let schoolName = data[i].school
@@ -49,12 +51,13 @@ schoolDropdown.addEventListener('change', e => {
                     let proficientCount = data[i]._2012_proficient_count
                     
                     let tr = tcapBody.insertRow()
+                    tr.className = "unselected"
                     let td1 = tr.insertCell(0)
-                    td1.className = "school-name"
+                    td1.id = "school-name"
                     let td2 = tr.insertCell(1)
-                    td2.className = "grade-level"
+                    td2.id = "grade-level"
                     let td3 = tr.insertCell(2)
-                    td3.className = "proficient-count"
+                    td3.id = "proficient-count"
                     
                     let tdSchool = document.createTextNode(schoolName)
                     let tdGradeLevel = document.createTextNode(gradeLevel)
@@ -68,14 +71,23 @@ schoolDropdown.addEventListener('change', e => {
         })
 })
 
-// add event listener to schoolSearch
-// const schoolSearch = document.getElementById("queriedSchool")
-// schoolSearch.addEventListener("keyup", e => {
-//     const input = e.target.value
-//     const filteredSchools = tcapData.filter( data => {
-//         data.school.includes(input)
-//     })
-// })
+// highlight school of interest
+function highlightSchool(e) {
+    if ( e.target.parentNode.className === "unselected" ) {
+        e.target.parentNode.className = "selected"
+        e.target.parentNode.style.color = "pink"
+    }
+}
+
+function unhighlightSchool(e) {
+    if ( e.target.parentNode.className === "selected" ) {
+        e.target.parentNode.className = "unselected"
+        e.target.parentNode.style.color = "black"
+    }
+}
+
+tcapBody.addEventListener('mouseover', highlightSchool)
+tcapBody.addEventListener('mouseout', unhighlightSchool)
 
 // function & event listener to remove table rows
 function removeSchool(event) {
@@ -83,5 +95,11 @@ function removeSchool(event) {
     tr.parentNode.removeChild(tr);
 }
 
-tcapBody.addEventListener("click", removeSchool)
+tcapBody.addEventListener('dblclick', removeSchool)
 
+// add event listener to schoolSearch
+// const schoolSearch = document.getElementById("queriedSchool")
+// schoolSearch.addEventListener("input", e => {
+//     const input = e.target.value
+//     console.log(input)
+// })

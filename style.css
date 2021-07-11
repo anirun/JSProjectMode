@@ -22,3 +22,15 @@ table, th, td
 th {
     font-weight:bold;
 }
+
+#note, footer {
+    font-size: smaller;
+    text-align: center;
+}
+
+div {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;  
+}

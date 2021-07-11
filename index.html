@@ -7,30 +7,43 @@
         <link rel="stylesheet" href="style.css">
     </HEAD>
     <BODY>
+<!-- begin dropdown -->
         <p class="school-dropdown">
             <label for="select-school">Filter Schools in CO:</label>
+            <br>
             <select id="school-dropdown" name="select-school">
                 <option value="a">a</option>
             </select>
         </p>
-        <p class="school-search">
+        <p id="note">Double click to remove a school from your list!</p>
+<!-- begin table -->
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="3">CO TCAP Data by School and Grade (2012)</th>
+                    </tr>
+                    <tr>
+                        <td class="school-name">School Name</td>
+                        <td class="grade-level">Grade-level</td>
+                        <td class="proficient-count">Proficient Count</td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+         </div>
+<!-- removed lines 33 - 36, search bar not functioning -->
+        <!-- <p class="school-search">
             <label for="school-search">Search for a School in CO:</label>
-            <input type="search" id="queriedSchool" required minlength="4" maxlength="12" size="10">
-        </p>
-
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="3">CO TCAP Data by School and Grade (2012)</th>
-                </tr>
-                <tr>
-                    <td class="school-name">School Name</td>
-                    <td class="grade-level">Grade-level</td>
-                    <td class="proficient-count">Proficient Count</td>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+            <input type="search" id="queriedSchool" required minlength="4" maxlength="25" size="10">
+        </p> -->
     </BODY>
+    <FOOTER>
+        <div>
+        This single-page application uses publicly available data from the <a href="http://data.colorado.gov">Colorado Information Marketplace</a>.
+        <br>
+        Thanks, Colorado!
+        </div>
+    </FOOTER>
 </HTML>
