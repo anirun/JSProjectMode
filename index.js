@@ -1,13 +1,3 @@
-// define API URL to fetch
-dataUrl = "https://data.colorado.gov/resource/pxq3-yhfb.json"
-
-/* create fetchTcapData function to parse API JSON into a JS Object 
-that can later be manipulated with a chained .then() */
-let fetchTcapData = function(){
-    return fetch(dataUrl)
-        .then(json => json.json())
-}
-
 // grab tcap-table and school-dropdown, clear it, and add default option
 let tcapBody = document.querySelector('tbody')
 let schoolDropdown = document.getElementById('school-dropdown')
@@ -19,9 +9,20 @@ defaultOption.text = "Choose School and Grade Level"
 schoolDropdown.add(defaultOption)
 schoolDropdown.selectedIndex = 0
 
+// define API URL to fetch
+dataUrl = "https://data.colorado.gov/resource/pxq3-yhfb.json"
+
+/* create fetchTcapData function to parse API JSON into a JS Object 
+that can later be manipulated with a chained .then() */
+let fetchTcapData = function(){
+    return fetch(dataUrl)
+        .then(json => json.json())
+}
+
 // use fetchTcapData to populate schoolDropdown with school names
 fetchTcapData()
     .then(function(data) {
+        
         let option;
         for (let i=0; i< data.length; i++) {
             if (!data[i].school.includes("RESULTS" || "DISTRICT")) {

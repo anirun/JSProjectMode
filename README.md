@@ -6,20 +6,20 @@ This application allows users to choose districts in Colorado to compare and exa
 
 	⁃	As a user, I will be able to choose a district from a District Dropdown Form, so that I can populate the TCAP Score List to view the related TCAP scores.
 
-	⁃	As a user, I will be able to click on a district to remove it from the TCAP Score List.
+	⁃	As a user, I will be able to double click on a district to remove it from the TCAP Score List.
 
 	⁃	As a user, when I mouse over a line in the TCAP table, it will highlight only that line.
 
 API endpoint: https://data.colorado.gov/resource/pxq3-yhfb.json
 	
-	⁃	I will be fetching an API containing TCAP data collected in 2012 from various districts around Colorado to compare district performance related to factors like Free and Reduced Lunch, Unsatisfactory, Proficient and Advanced Performance.
+	⁃	I will fetch an API containing TCAP data collected in 2012 from districts around Colorado to compare data like Proficient Count (number of students considered proficient in that grade level).
 	
 How you are meeting the requirements of the project
 
-	⁃	3 Event Listeners: dropdown form, highlight on mouseover, dblclick-to-remove
+	⁃	3 Event Listeners: dropdown form, highlight on mouseover, double click to remove
 	  ⁃	dropdown form: I will need an event listener on the District Dropdown Form to listen for changes in chosen districts.
 	  ⁃	highlight on mouseover: I will need two event listeners, one for mouseover and one for mouseout.
-	  ⁃	click-to-remove: I will need an event listener on each District displayed in the TCAP Score List to listen for a “click” prompting removal.
+	  ⁃	double click to remove: I will need an event listener on each District displayed in the TCAP Score List to listen for a “click” prompting removal.
 	⁃	single-page application
 	⁃	using a publicly accessible API that does not require a key
 	
