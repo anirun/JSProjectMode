@@ -31,6 +31,6 @@ Push Goals…
 	⁃	make a button on each <li> to click to remove
 	⁃	choose fields to display (ie, FaRL, grade level, no score count, etc)
   
-2. How do you install this project?
 
-3. If you want to run this project, are there any special considerations? If so, what are they?
+2. If you want to run this project, are there any special considerations? If so, what are they?
+ N/A
